@@ -1,5 +1,5 @@
 import 'package:bmicalculator/constants/colors.dart';
-import 'package:bmicalculator/constants/height_bar.dart';
+import 'package:bmicalculator/constants/height_rule.dart';
 import 'package:flutter/material.dart';
 
 class HeightScreen extends StatefulWidget {
@@ -19,6 +19,7 @@ class _HeightScreenState extends State<HeightScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -125,45 +126,34 @@ class _HeightScreenState extends State<HeightScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Row(
             //Will contain the height bar and the input field for height
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 20),
               //Rule that shows the height in cm
+              HeightRule(),
+              SizedBox(width: 60),
+              //Input field for height
               Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade100, width: 1.5),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const SizedBox(height: 10),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          HeightBar(barWidth: 30),
-                          SizedBox(width: 20),
-                        ]),
-                    const SizedBox(height: 5),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      const HeightBar(barWidth: 30),
-                      const SizedBox(width: 20),
-                      Text('220',
-                          style: TextStyle(
-                              fontSize: 20, color: ruleSeparatorColor)),
-                    ]),
-                    const SizedBox(height: 10),
-                    Text('200'),
-                    Text('180'),
-                    Text('160'),
-                    Text('140'),
-                    Text('120'),
-                    Text('100'),
-                    Text('80'),
-                    Text('60'),
-                    Text('40'),
-                  ],
+                width: 130,
+                child: TextField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    hintText: 'Height',
+                    hintStyle: TextStyle(
+                        fontSize: 42,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.orange.withOpacity(.8)),
+                    border: InputBorder.none,
+                  ),
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontWeight: FontWeight.w300,
+                    color: txtColor,
+                  ),
                 ),
               )
             ],

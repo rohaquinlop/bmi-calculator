@@ -14,7 +14,7 @@ class HeightBar extends StatelessWidget {
       children: [
         Container(
           width: barWidth,
-          height: 3,
+          height: 2,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(20),
