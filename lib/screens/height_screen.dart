@@ -15,6 +15,7 @@ class _HeightScreenState extends State<HeightScreen> {
   Color _txtColorC = primaryColor;
   Color _txtColorF = txtColor;
   Color _txtColorI = txtColor;
+  String hType = 'cm';
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,7 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorC = primaryColor;
                         _txtColorF = txtColor;
                         _txtColorI = txtColor;
+                        hType = 'cm';
                       });
                     },
                     child: Text(
@@ -84,6 +86,7 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorF = primaryColor;
                         _txtColorC = txtColor;
                         _txtColorI = txtColor;
+                        hType = 'ft';
                       });
                     },
                     child: Text(
@@ -108,6 +111,7 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorI = primaryColor;
                         _txtColorC = txtColor;
                         _txtColorF = txtColor;
+                        hType = 'in';
                       });
                     },
                     child: Text(
@@ -129,14 +133,14 @@ class _HeightScreenState extends State<HeightScreen> {
           const SizedBox(height: 10),
           Row(
             //Will contain the height bar and the input field for height
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(width: 20),
+              //SizedBox(width: 20),
               //Rule that shows the height in cm
-              HeightRule(),
-              SizedBox(width: 60),
+              HeightRule(hType: hType),
+              const SizedBox(width: 60),
               //Input field for height
-              Container(
+              SizedBox(
                 width: 130,
                 child: TextField(
                   keyboardType:
@@ -157,6 +161,28 @@ class _HeightScreenState extends State<HeightScreen> {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            width: 300,
+            child: ElevatedButton(
+              onPressed: () {
+                //Navigator.pop(context);
+              },
+              child: const Text(
+                'Next',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: btnColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 0,
+              ),
+            ),
           )
         ],
       ),

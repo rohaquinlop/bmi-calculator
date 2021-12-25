@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 class HeightRule extends StatelessWidget {
   //Constructor
-  const HeightRule({Key? key}) : super(key: key);
+  final String hType;
+
+  const HeightRule({Key? key, required this.hType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class HeightRule extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           const Rule(),
-          const SizedBox(width: 10),
-          RuleNumbers(),
-          const SizedBox(width: 10)
+          const SizedBox(width: 20),
+          RuleNumbers(hType: hType),
+          const SizedBox(width: 20)
         ],
       ),
     );
