@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="inner-shadow-filter-2" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="inner-shadow 1 18 -1 0 0.21 rgba(0,0,0,0.7)">
+      <feOffset dx="18" dy="-1"/>
+      <feGaussianBlur stdDeviation="0"/>
+      <feComposite operator="out" in="SourceGraphic"/>
+      <feComponentTransfer result="choke">
+        <feFuncA type="linear" slope="0.42"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+      <feComposite operator="in" in="color" in2="choke" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+    <filter id="inner-shadow-filter-1" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="inner-shadow 1 13 -4 0 0.21 rgba(0,0,0,0.7)">
+      <feOffset dx="13" dy="-4"/>
+      <feGaussianBlur stdDeviation="0"/>
+      <feComposite operator="out" in="SourceGraphic"/>
+      <feComponentTransfer result="choke">
+        <feFuncA type="linear" slope="0.42"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+      <feComposite operator="in" in="color" in2="choke" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+    <filter id="inner-shadow-filter-0" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="inner-shadow 1 -13 -4 0 0.21 rgba(0,0,0,0.7)">
+      <feOffset dx="-13" dy="-4"/>
+      <feGaussianBlur stdDeviation="0"/>
+      <feComposite operator="out" in="SourceGraphic"/>
+      <feComponentTransfer result="choke">
+        <feFuncA type="linear" slope="0.42"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+      <feComposite operator="in" in="color" in2="choke" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="412.816" height="438.005" style="stroke: rgb(0, 0, 0); fill: rgb(32, 185, 253); stroke-width: 6px; filter: none;" rx="85.19" ry="85.19" y="22.272" x="47.328"/>
+  <path style="stroke: rgb(0, 0, 0); fill: rgb(205, 240, 255); stroke-linecap: round; stroke-dashoffset: 16px; stroke-width: 7px; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: url(#inner-shadow-filter-2);" d="M 169.469 216.012 C 253.73 187.95 327.907 216.012 327.907 216.012 L 372.119 145.292 C 250.23 89.194 124.637 142.422 124.637 142.422 L 169.469 216.012 Z"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-width: 7px;" x1="248.39" y1="201.278" x2="248.782" y2="157.562"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 7px; stroke-linecap: round; stroke-linejoin: round; paint-order: fill; fill: rgb(181, 233, 255); filter: url(#inner-shadow-filter-1);" d="M 181.046 422.076 C 206.683 409.104 190.003 375.126 190.003 375.126 C 190.003 375.126 180.118 330.337 185.679 315.819 C 185.679 315.819 193.71 298.329 193.401 284.827 C 193.771 237.827 144.287 245.858 144.287 245.858 C 144.287 245.858 95.077 249.66 100.403 298.329 L 131.005 399.288 C 131.005 399.288 143.361 438.757 181.046 422.076 Z"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 7px; stroke-linecap: round; stroke-linejoin: round; paint-order: fill; fill: rgb(181, 233, 255); filter: url(#inner-shadow-filter-0);" d="M 386.652 230.968 C 410.598 243.94 395.018 277.918 395.018 277.918 C 395.018 277.918 385.784 322.707 390.979 337.225 C 390.979 337.225 398.48 354.715 398.192 368.217 C 398.537 415.217 352.317 407.186 352.317 407.186 C 352.317 407.186 306.353 403.384 311.328 354.715 L 339.911 253.756 C 339.911 253.756 351.452 214.287 386.652 230.968 Z" transform="matrix(-1, 0, 0, -1, 710.950928, 634.563782)"/>
+</svg>

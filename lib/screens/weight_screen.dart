@@ -1,18 +1,18 @@
 import 'package:bmicalculator/constants/colors.dart';
-import 'package:bmicalculator/constants/height_rule.dart';
-import 'package:bmicalculator/screens/weight_screen.dart';
+import 'package:bmicalculator/constants/weight_arc.dart';
 import 'package:flutter/material.dart';
 
-class HeightScreen extends StatefulWidget {
+class WeightScreen extends StatefulWidget {
+  double height;
+
+  WeightScreen({Key? key, required this.height});
+
   @override
-  _HeightScreenState createState() => _HeightScreenState();
+  _WeightScreenState createState() => _WeightScreenState();
 }
 
-class _HeightScreenState extends State<HeightScreen> {
-  final TextEditingController _heightController = TextEditingController();
-
-  double _height = 0.0;
-
+class _WeightScreenState extends State<WeightScreen> {
+  //widget.height.toString()
   Color _btnColorC = accentColor;
   Color _btnColorF = primaryColor;
   Color _btnColorI = primaryColor;
@@ -20,7 +20,11 @@ class _HeightScreenState extends State<HeightScreen> {
   Color _txtColorC = primaryColor;
   Color _txtColorF = txtColor;
   Color _txtColorI = txtColor;
-  String hType = 'cm';
+
+  String wType = 'kg';
+
+  double _weight = 76;
+  final TextEditingController _weightController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class _HeightScreenState extends State<HeightScreen> {
           },
         ),
         title: Text(
-          'Height',
+          'Weight',
           style: TextStyle(fontSize: 20, color: txtColor),
         ),
         backgroundColor: Colors.transparent,
@@ -45,6 +49,7 @@ class _HeightScreenState extends State<HeightScreen> {
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Container(
@@ -66,11 +71,11 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorC = primaryColor;
                         _txtColorF = txtColor;
                         _txtColorI = txtColor;
-                        hType = 'cm';
+                        wType = 'kg';
                       });
                     },
                     child: Text(
-                      'Centimeter',
+                      'Kilogram',
                       style: TextStyle(color: _txtColorC),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -91,11 +96,11 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorF = primaryColor;
                         _txtColorC = txtColor;
                         _txtColorI = txtColor;
-                        hType = 'ft';
+                        wType = 'pn';
                       });
                     },
                     child: Text(
-                      'Feet',
+                      'Pound',
                       style: TextStyle(color: _txtColorF),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -116,11 +121,11 @@ class _HeightScreenState extends State<HeightScreen> {
                         _txtColorI = primaryColor;
                         _txtColorC = txtColor;
                         _txtColorF = txtColor;
-                        hType = 'in';
+                        wType = 'gr';
                       });
                     },
                     child: Text(
-                      'Inches',
+                      'Gram',
                       style: TextStyle(color: _txtColorI),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -135,71 +140,37 @@ class _HeightScreenState extends State<HeightScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 10),
-          Row(
-            //Will contain the height bar and the input field for height
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //SizedBox(width: 20),
-              //Rule that shows the height in cm
-              HeightRule(hType: hType),
-              const SizedBox(width: 60),
-              //Input field for height
-              SizedBox(
-                width: 130,
-                child: TextField(
-                  controller: _heightController,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(
-                    hintText: 'Height',
-                    hintStyle: TextStyle(
-                        fontSize: 42,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.orange.withOpacity(.8)),
-                    border: InputBorder.none,
-                  ),
-                  style: TextStyle(
-                    fontSize: 42,
-                    fontWeight: FontWeight.w300,
-                    color: txtColor,
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            width: 300,
-            child: ElevatedButton(
-              onPressed: () {
-                if (_heightController.text.isNotEmpty) {
+          //Here comes the scale animated
+          WeightArc(weight: _weight, wType: wType),
+          Center(
+            child: SizedBox(
+              width: 200,
+              child: TextField(
+                onChanged: (text) {
                   setState(() {
-                    _height = double.parse(_heightController.text);
-                    if (hType == 'ft') {
-                      _height = _height * 30.48;
-                    } else if (hType == 'in') {
-                      _height = _height * 2.54;
+                    if (text.isNotEmpty) {
+                      _weight = double.parse(text);
+                    } else {
+                      _weight = 0.0;
                     }
                   });
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WeightScreen(height: _height)));
-                  //Navigator.pushNamed(context, '/weight', arguments: _height);
-                }
-                //Navigator.pop(context);
-              },
-              child: const Text(
-                'Next',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: btnColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                },
+                controller: _weightController,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                  hintText: 'Weight',
+                  hintStyle: TextStyle(
+                      fontSize: 42,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.orange.withOpacity(.8)),
+                  border: InputBorder.none,
                 ),
-                elevation: 0,
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w300,
+                  color: txtColor,
+                ),
               ),
             ),
           )
