@@ -8,11 +8,11 @@ final Color btnColor = HexColor('#5631FB');
 final Color weigthColor = HexColor('#20B9FC');
 final Color ruleSeparatorColor = HexColor('#E0E0E0');
 
-final Gradient gradient = new LinearGradient(
+final Gradient gradient = LinearGradient(
   colors: <Color>[
     Colors.greenAccent.withOpacity(1.0),
     Colors.yellowAccent.withOpacity(1.0),
     Colors.redAccent.withOpacity(1.0),
   ],
-  stops: [0.0, 0.5, 1.0],
+  stops: const [0.0, 0.5, 1.0],
 );

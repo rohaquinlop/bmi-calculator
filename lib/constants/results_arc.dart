@@ -2,17 +2,15 @@ import 'package:bmicalculator/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class WeightArc extends StatefulWidget {
-  final double weight;
-  final String wType;
-  const WeightArc({Key? key, required this.weight, required this.wType})
-      : super(key: key);
+class ResultsArc extends StatefulWidget {
+  double result;
+  ResultsArc({Key? key, required this.result}) : super(key: key);
 
   @override
-  _WeightArcState createState() => _WeightArcState();
+  _ResultsArcState createState() => _ResultsArcState();
 }
 
-class _WeightArcState extends State<WeightArc>
+class _ResultsArcState extends State<ResultsArc>
     with SingleTickerProviderStateMixin {
   late Animation<double> _animation;
   late AnimationController _controller;
@@ -30,22 +28,13 @@ class _WeightArcState extends State<WeightArc>
       curve: Curves.easeInOutCubic,
     );
 
-    double endV = 3.14;
-
-    if (widget.wType == 'kg') {
-      endV = (widget.weight * 3.14) / 100.0;
-    } else if (widget.wType == 'pn') {
-      endV = (widget.weight * 3.14) / 220.5;
-    } else {
-      endV = (widget.weight * 3.14) / 100000;
-    }
+    double endV = (widget.result * 6.28) / 40;
 
     _animation = Tween<double>(begin: 0.0, end: endV).animate(curvedAnimation)
       ..addListener(() {
         setState(() {});
       });
     _controller.forward();
-    //_controller.repeat(period: const Duration(seconds: 2));
   }
 
   @override
@@ -56,36 +45,6 @@ class _WeightArcState extends State<WeightArc>
 
   @override
   Widget build(BuildContext context) {
-    final curvedAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOutCubic,
-    );
-
-    double endV = 3.14;
-
-    if (widget.wType == 'kg') {
-      endV = (widget.weight * 3.14) / 100.0;
-    } else if (widget.wType == 'pn') {
-      endV = (widget.weight * 3.14) / 220.5;
-    } else {
-      endV = (widget.weight * 3.14) / 100000;
-    }
-
-    _animation = Tween<double>(begin: 0.0, end: endV).animate(curvedAnimation)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    String type = 'Kg';
-
-    if (widget.wType == 'kg') {
-      type = 'Kg';
-    } else if (widget.wType == 'pn') {
-      type = 'Pounds';
-    } else {
-      type = 'Grams';
-    }
-
     return SizedBox(
       height: 300,
       width: 300,
@@ -99,14 +58,14 @@ class _WeightArcState extends State<WeightArc>
               ),
               CustomPaint(
                 size: const Size(300, 300),
-                painter: ProgressArc(_animation.value, Colors.redAccent, false),
+                painter: ProgressArc(_animation.value, accentColor, false),
               ),
               //Custom Text
               Padding(
                   padding: const EdgeInsets.only(top: 100),
                   child: Center(
                     child: Text(
-                      "${widget.weight} $type",
+                      widget.result.toStringAsFixed(2),
                       style:
                           const TextStyle(color: Colors.black54, fontSize: 30),
                     ),
@@ -125,10 +84,10 @@ class ProgressArc extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Rect.fromLTRB(0, 0, 300, 300);
-    final startAngle = -math.pi;
-    final sweepAngle = arc != -10000 ? arc : math.pi;
-    final userCenter = false;
+    const rect = Rect.fromLTRB(0, 0, 300, 300);
+    const startAngle = -math.pi;
+    final sweepAngle = arc != -10000 ? arc : 2 * math.pi;
+    const userCenter = false;
     final paint = Paint()
       ..strokeCap = StrokeCap.round
       ..color = progressColor
@@ -136,7 +95,7 @@ class ProgressArc extends CustomPainter {
       ..strokeWidth = 20;
 
     if (!isBackground) {
-      paint.shader = gradient.createShader(rect);
+      //paint.shader = gradient.createShader(rect);
     }
     canvas.drawArc(rect, startAngle, sweepAngle, userCenter, paint);
   }

@@ -1,5 +1,6 @@
 import 'package:bmicalculator/constants/colors.dart';
 import 'package:bmicalculator/constants/weight_arc.dart';
+import 'package:bmicalculator/screens/results_screen.dart';
 import 'package:flutter/material.dart';
 
 class WeightScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _WeightScreenState extends State<WeightScreen> {
 
   String wType = 'kg';
 
-  double _weight = 76;
+  double _weight = 0.0;
   final TextEditingController _weightController = TextEditingController();
 
   @override
@@ -171,6 +172,37 @@ class _WeightScreenState extends State<WeightScreen> {
                   fontWeight: FontWeight.w300,
                   color: txtColor,
                 ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 300,
+            child: ElevatedButton(
+              onPressed: () {
+                if (_weightController.text.isNotEmpty) {
+                  if (wType == 'pn') {
+                    _weight = _weight / 2.205;
+                  } else if (wType == 'gr') {
+                    _weight = _weight / 1000;
+                  }
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ResultsScreen(
+                          height: widget.height, weight: _weight)));
+                }
+              },
+              child: const Text(
+                'Next',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: btnColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 0,
               ),
             ),
           )
