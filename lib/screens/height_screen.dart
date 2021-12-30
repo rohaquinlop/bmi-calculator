@@ -173,16 +173,10 @@ class _HeightScreenState extends State<HeightScreen> {
             child: ElevatedButton(
               onPressed: () {
                 if (_heightController.text.isNotEmpty) {
-                  setState(() {
-                    _height = double.parse(_heightController.text);
-                    if (hType == 'ft') {
-                      _height = _height * 30.48;
-                    } else if (hType == 'in') {
-                      _height = _height * 2.54;
-                    }
-                  });
+                  _height = double.parse(_heightController.text);
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WeightScreen(height: _height)));
+                      builder: (context) =>
+                          WeightScreen(height: _height, hType: hType)));
                   //Navigator.pushNamed(context, '/weight', arguments: _height);
                 }
                 //Navigator.pop(context);

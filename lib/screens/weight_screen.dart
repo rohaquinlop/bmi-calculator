@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class WeightScreen extends StatefulWidget {
   double height;
+  String hType;
 
-  WeightScreen({Key? key, required this.height});
+  WeightScreen({Key? key, required this.height, required this.hType});
 
   @override
   _WeightScreenState createState() => _WeightScreenState();
@@ -142,6 +143,7 @@ class _WeightScreenState extends State<WeightScreen> {
             ),
           ),
           //Here comes the scale animated
+          const SizedBox(height: 20),
           WeightArc(weight: _weight, wType: wType),
           Center(
             child: SizedBox(
@@ -175,19 +177,18 @@ class _WeightScreenState extends State<WeightScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
           SizedBox(
             width: 300,
             child: ElevatedButton(
               onPressed: () {
                 if (_weightController.text.isNotEmpty) {
-                  if (wType == 'pn') {
-                    _weight = _weight / 2.205;
-                  } else if (wType == 'gr') {
-                    _weight = _weight / 1000;
-                  }
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ResultsScreen(
-                          height: widget.height, weight: _weight)));
+                          height: widget.height,
+                          weight: _weight,
+                          wType: wType,
+                          hType: widget.hType)));
                 }
               },
               child: const Text(

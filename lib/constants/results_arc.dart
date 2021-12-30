@@ -45,29 +45,32 @@ class _ResultsArcState extends State<ResultsArc>
 
   @override
   Widget build(BuildContext context) {
+    double sizeW = 250;
     return SizedBox(
-      height: 300,
-      width: 300,
+      height: sizeW,
+      width: sizeW,
       child: Padding(
           padding: const EdgeInsets.only(top: 30),
           child: Stack(
             children: [
               CustomPaint(
-                size: const Size(300, 300),
-                painter: ProgressArc(-10000, Colors.black54, true),
+                size: Size(sizeW, sizeW),
+                painter: ProgressArc(-10000, Colors.grey.shade400, true),
               ),
               CustomPaint(
-                size: const Size(300, 300),
+                size: Size(sizeW, sizeW),
                 painter: ProgressArc(_animation.value, accentColor, false),
               ),
               //Custom Text
               Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 40),
                   child: Center(
                     child: Text(
-                      widget.result.toStringAsFixed(2),
-                      style:
-                          const TextStyle(color: Colors.black54, fontSize: 30),
+                      widget.result.toStringAsFixed(1),
+                      style: TextStyle(
+                          color: txtColor,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w900),
                     ),
                   )),
             ],
@@ -84,7 +87,7 @@ class ProgressArc extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    const rect = Rect.fromLTRB(0, 0, 300, 300);
+    const rect = Rect.fromLTRB(0, 0, 250, 250);
     const startAngle = -math.pi;
     final sweepAngle = arc != -10000 ? arc : 2 * math.pi;
     const userCenter = false;
@@ -92,7 +95,7 @@ class ProgressArc extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..color = progressColor
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 20;
+      ..strokeWidth = 35;
 
     if (!isBackground) {
       //paint.shader = gradient.createShader(rect);

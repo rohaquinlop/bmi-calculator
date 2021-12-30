@@ -133,7 +133,7 @@ class ProgressArc extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..color = progressColor
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 20;
+      ..strokeWidth = 30;
 
     if (!isBackground) {
       paint.shader = gradient.createShader(rect);
