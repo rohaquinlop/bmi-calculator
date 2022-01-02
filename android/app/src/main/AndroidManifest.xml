@@ -2,7 +2,7 @@
     package="com.example.bmicalculator">
    <application
         android:label="BMI Calculator"
-        android:name="BMI Calculator"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
